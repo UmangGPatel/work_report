@@ -1,3 +1,13 @@
+<?php 
+session_start();
+if(!isset($_SESSION['user_id'])){
+ header('location:index.php');
+}
+
+?>
+
+
+
 <!doctype html>
 
 <!-- If multi-language site, reconsider usage of html lang declaration here. -->
@@ -53,7 +63,7 @@
 	      <div class="content">
 			        <button onclick="document.getElementById('submit_report').style.display='block'">Submit Report</button>
 			        <button  onclick="document.getElementById('generate_report').style.display='block'">Generate Report</button>
-			         <button>logout</button>
+			         <a href="logout.php"><button>logout</button></a>
 	       </div>
 
 			<div id="submit_report" class="popup">
@@ -68,8 +78,7 @@
 		      					    <input class="" type="date" name="ending_date">
 		        					<label>Report</label>
 		      					    <textarea name="message" rows="10" cols="70"></textarea>
-		       						 <button>save</button>
-
+		       						<button>save</button>
 		      				</div>
     				</div>
  			 </div>

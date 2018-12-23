@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(isset($_SESSION['user_id'])){
+ header('location:home.php');
+}
+
+?>
 <!doctype html>
 
 <!-- If multi-language site, reconsider usage of html lang declaration here. -->
@@ -41,6 +48,42 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 </head>
 <body>
+  <?php
+  // define variables and set to empty values
+  //$name = $pass="";
+  $con=mysqli_connect('localhost','root','','report_db');
+  if($con)
+  {
+    
+  }
+  else{
+    die("not conneted");
+  }
+  
+  if (isset($_POST['submit'] )) {
+    
+   $uname = $_POST['username'];
+    $pass = $_POST['password'];
+    $qry= " SELECT *FROM login_table where Username='$uname' and Password='$pass'  ";
+    $run=mysqli_query($con,$qry);
+    $row=mysqli_num_rows($run);
+    if($row < 1){
+     ?>
+      <script>
+       alert('username or password is not matched');
+     </script>
+    <?php
+   }
+   else {
+     $data=mysqli_fetch_assoc($run);
+     $id=$data['ID'];
+     session_start();
+     $_SESSION['user_id']=$id;
+     header('location:home.php');
+    }
+    
+  }
+  ?>
   <div class="container">
     <!-- header starts -->
     <header class="wrapper">
@@ -53,10 +96,10 @@
                   
                 <div class="login-page">
                       <div class="form">
-                          <form class="login-form">
-                                <input type="text" placeholder="username"/>
-                                <input type="password" placeholder="password"/>
-                                <button>login</button>
+                          <form class="login-form" action="index.php" method="post">
+                                <input type="text" placeholder="username" name="username" />
+                                <input type="password" placeholder="password" name="password" />
+                                <button type="submit" name="submit">login</button>
                           </form>
                       </div>
                 </div>
