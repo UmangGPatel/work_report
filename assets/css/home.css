@@ -72,6 +72,9 @@ font-size: 1.5em;
 background: teal;
 text-transform: capitalize;
 }
+.popup-content {
+	background: white;
+}
 .popup-input label{
 text-transform: capitalize;
 display: block;
@@ -84,15 +87,23 @@ padding: 10px 30px;
 	margin: 5px 0px;
 }
 
+#sr_name:focus{
+	border: 0px;
+}
+#sr_name:{
+	border:1px;
+}
 .popup-input textarea{
 	resize:none;
+	background: white;
+
 }
 
 
 .popup-input button{
 	padding: 20px;
 	background: teal;
-	color: #000;
+	color: #fff;
 	font-size: 1.2em;
 	text-transform: capitalize;
 	width:100%;

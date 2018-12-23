@@ -17,7 +17,7 @@ if(!isset($_SESSION['user_id'])){
 
   <meta charset="utf-8">
 
-  <title>Weekly Progress Report - Home</title>
+  <title>Home- Weekly Progress Report</title>
 
   <!-- 120 word description for SEO purposes goes here. Note: Usage of lang tag. -->
   <meta name="description" lang="en" content="">
@@ -45,16 +45,15 @@ if(!isset($_SESSION['user_id'])){
   <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-  <link rel="icon" href="https://picsum.photos/350/100/?random" type="image/png" sizes="16x16">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <script src="assets/vendor/jquery.min.js"></script>
+  <script src="assets/js/home.js"></script>
 </head>
 <body>
   <div class="container">
     <!-- header starts -->
     <header class="wrapper">
-         <h1>Home-weekly progress report</h1>
+         <h1>weekly progress report</h1>
     </header>
     <!-- header ends -->
     <!-- main starts -->
@@ -72,27 +71,30 @@ if(!isset($_SESSION['user_id'])){
 	        				<h2 >submit report</h2>
 	    
 		      				<div class="popup-input">
+                      <label> Name</label>
+                        <input type="text" name="name" id="sr_name">
 		       						<label> Starting Date</label>
-		      			    		<input type="date" name="starting_date">
+		      			    		<input type="date" name="starting_date" id="sr_start_date">
 		        					<label>Ending Date</label>
-		      					    <input class="" type="date" name="ending_date">
+		      					    <input class="" type="date" name="ending_date" id="sr_end_date">
 		        					<label>Report</label>
-		      					    <textarea name="message" rows="10" cols="70"></textarea>
-		       						<button>save</button>
+		      					    <textarea name="message" rows="10" cols="70" id="sr_report"></textarea>
+		       						<button id="save">save</button>
 		      				</div>
     				</div>
  			 </div>
  			 <div id="generate_report" class="popup">
                    <div class="popup-content">
 	       					<span onclick="document.getElementById('generate_report').style.display='none'">×</span>
-	        				<h2 >submit report</h2>
-	    
+	        				<h2>generate report</h2>
 		      				<div class="popup-input">
+                      <form action="generate_excle.php" method="post">
 		       						<label> Starting Date</label>
-		      			    		<input type="date" name="starting_date">
+		      			    		<input type="date" name="start_date" id="gr_start_date">
 		        					<label>Ending Date</label>
-		      					    <input class="" type="date" name="ending_date">		       				  <button>Generate</button>
-
+		      					    <input class="" type="date" name="end_date" id="gr_end_date">	
+                        <button type="submit" onclick="generate()">Generate</button>
+                      </form>
 		      				</div>
     				</div>
  			 </div>
